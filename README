@@ -1,0 +1,24 @@
+piplineViewer is PERT task viewer developed by Walt Disney Animation Studios for
+displaying shotgun tasks in a PERT graph view.
+
+The pipelineViewer.py a Shotgun Action Menu item.  It is being deployed on an Apache
+server with mod_python installed.
+
+pipelineViewer is built in python and uses pydot to product the PERT graphic image.  pydot
+is a python API over graphviz, so you will need graphviz as well as pyparsing python modules.
+You can find pydot at http://code.google.com/p/pydot/
+
+To create the menu item, the normal Shotgun API can be used to create the action item.
+For instance:
+sg = shotgun(.....)
+data = {
+        "title": "Pipeline View", 
+        "url": "<serverpathtopipelineviewer>/pipelineViewer/view", 
+        "list_order": 1,
+        "entity_type": "Task",
+        'selection_required': False
+        }
+sg.create( "ActionMenuItem", data )
+
+You will need to provide your shotgun server, script and key parameters.   We also use python 
+logging services, you might need to adjust accordingly
